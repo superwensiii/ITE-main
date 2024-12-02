@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attendance Record</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: rgb(16,17,18);
+            color: white;
+        }
+        .sidebar {
+            height: 99vh;
+            width: 255px;
+            position: fixed;
+            top: 0;
+            left: 0%;
+            background-color: rgb(30,31,32);
+            color: white;
+            padding-top: 20px;
+            
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar.hidden {
+            transform: translateX(-300px);
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #5A2E98;
+        }
+
+        .menu-btn {
+            font-size: 1.5rem;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            margin: 10px 15px;
+        }
+
+        .dashboard-header {
+            margin-bottom: 20px;
+        }
+
+        .content {
+            margin-left: 270px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+
+        .content.expanded {
+            margin-left: 30px;
+        }
+
+        .card {
+            border: none;
+            border-radius: 10px;
+        }
+        .attendance-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .attendance-table th, .attendance-table td {
+            vertical-align: middle;
+        }
+        .status-present {
+            color: green;
+            font-weight: bold;
+        }
+        .status-absent {
+            color: red;
+            font-weight: bold;
+        }
+        .status-late {
+            color: yellow;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+       <!-- Sidebar -->
+<div id="sidebar" class="sidebar">
+    <h2> Employee</h2>
+    <a href="employee.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+    <a href="employee_attendance.html"><i class="bi bi-calendar-check me-2"></i>Time and Attendance</a>
+    <a href="employee_leave.html"><i class="bi bi-file-earmark-text me-2"></i>Leave Management</a>
+    <a href="employee_evaluation.html"><i class="bi bi-bar-chart-line me-2"></i>Performance Management</a>
+    <a href="employee_payroll.html"><i class="bi bi-wallet2 me-2"></i>Payroll</a>
+    <a href="employee_login.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+</div>
+
+<!-- Content -->
+<div id="content" class="content">
+    <div class="navbar d-flex justify-content-between align-items-center">
+        <button id="menu-btn" class="menu-btn">☰</button>
+        <div class="d-flex align-items-center me-4">
+            <i class="bi bi-person-circle me-2" style="font-size: 2rem; color: white;"></i>
+            <span style="color: white; font-size: 1.5rem;">Hi, Thirdy</span>
+        </div>
+    </div>
+
+<div class="container mt-5">
+    <!-- Employee Attendance Summary -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="card attendance-card bg-dark">
+                <div class="card-body text-center">
+                    <h3 class="card-title">Employee Attendance Record</h3>
+                    <p class="text-light">November 2024</p>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="border p-3 bg-dark">
+                                <h4>Total Days</h4>
+                                <p class="fs-5">24</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="border p-3 bg-dark">
+                                <h4>Total Present</h4>
+                                <p class="fs-5 text-success">21</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="border p-3 bg-dark">
+                                <h4>Total Late</h4>
+                                <p class="fs-5 text-warning">1</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="border p-3 bg-dark">
+                                <h4>Total Absent</h4>
+                                <p class="fs-5 text-danger">2</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attendance Table -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card attendance-card bg-dark">
+                <div class="card-body bg-dark">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="card-title">Attendance Details</h5>
+                        <!-- Search Bar for Dates -->
+                        <input type="text" class="form-control w-25" placeholder="Search by date" id="searchDate">
+                    </div>
+                    <!-- Attendance Table -->
+                    <table class="table attendance-table">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Date</th>
+                                <th>Day</th>
+                                <th>Status</th>
+                                <th>Time-in</th>
+                                <th>Time-out</th>
+                            </tr>
+                        </thead>
+                        <tbody id="attendance-table-body" class="text-light">
+                            <!-- Attendance Rows will be inserted here dynamically -->
+                        </tbody>
+                    </table>
+                    <!-- Pagination Controls -->
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center" id="pagination"></ul>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Sample attendance data
+    const attendanceData = [
+        {date: 'Nov 4, 2024', day: 'Monday', status: 'Present', timeIn: '08:33 AM', timeOut: '05:08 PM'},
+        {date: 'Nov 5, 2024', day: 'Tuesday', status: 'Present', timeIn: '08:57 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 6, 2024', day: 'Wednesday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:20 PM'},
+        {date: 'Nov 7, 2024', day: 'Thursday', status: 'Present', timeIn: '08:45 AM', timeOut: '05:15 PM'},
+        {date: 'Nov 8, 2024', day: 'Friday', status: 'Late', timeIn: '09:10 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 9, 2024', day: 'Saturday', status: 'Absent', timeIn: '-', timeOut: '-'},
+        {date: 'Nov 11, 2024', day: 'Monday', status: 'Present', timeIn: '08:59 AM', timeOut: '06:00 PM'},
+        {date: 'Nov 12, 2024', day: 'Tuesday', status: 'Present', timeIn: '08:57 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 13, 2024', day: 'Wednesday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:20 PM'},
+        {date: 'Nov 14, 2024', day: 'Thursday', status: 'Present', timeIn: '08:45 AM', timeOut: '05:15 PM'},
+        {date: 'Nov 15, 2024', day: 'Friday', status: 'Present', timeIn: '08:57 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 16, 2024', day: 'Saturday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:15 PM'},
+        {date: 'Nov 18, 2024', day: 'Monday', status: 'Present', timeIn: '08:33 AM', timeOut: '05:08 PM'},
+        {date: 'Nov 19, 2024', day: 'Tuesday', status: 'Present', timeIn: '08:57 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 20, 2024', day: 'Wednesday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:20 PM'},
+        {date: 'Nov 21, 2024', day: 'Thursday', status: 'Present', timeIn: '08:45 AM', timeOut: '05:15 PM'},
+        {date: 'Nov 22, 2024', day: 'Friday', status: 'Present', timeIn: '08:30 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 23, 2024', day: 'Saturday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 25, 2024', day: 'Monday', status: 'Present', timeIn: '08:33 AM', timeOut: '05:08 PM'},
+        {date: 'Nov 26, 2024', day: 'Tuesday', status: 'Present', timeIn: '08:57 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 27, 2024', day: 'Wednesday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:20 PM'},
+        {date: 'Nov 28, 2024', day: 'Thursday', status: 'Present', timeIn: '08:45 AM', timeOut: '05:15 PM'},
+        {date: 'Nov 29, 2024', day: 'Friday', status: 'Present', timeIn: '08:45 AM', timeOut: '05:00 PM'},
+        {date: 'Nov 30, 2024', day: 'Saturday', status: 'Present', timeIn: '08:20 AM', timeOut: '05:05 PM'},
+    ];
+
+    const rowsPerPage = 6;
+    let currentPage = 1;
+
+    // Function to render the attendance table
+    function renderTable(page = 1) {
+        const tableBody = document.getElementById('attendance-table-body');
+        tableBody.innerHTML = '';
+
+        const start = (page - 1) * rowsPerPage;
+        const end = page * rowsPerPage;
+        const paginatedData = attendanceData.slice(start, end);
+
+        // Create rows for the table
+        paginatedData.forEach((entry) => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${entry.date}</td>
+                <td>${entry.day}</td>
+                <td class="status-${entry.status.toLowerCase()}">${entry.status}</td>
+                <td>${entry.timeIn}</td>
+                <td>${entry.timeOut}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        // Update pagination controls
+        updatePagination();
+    }
+
+    // Function to update pagination controls
+    function updatePagination() {
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = '';
+
+        const totalPages = Math.ceil(attendanceData.length / rowsPerPage);
+
+        for (let i = 1; i <= totalPages; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.classList.add('page-item');
+            pageItem.innerHTML = `
+                <a class="page-link" href="#" onclick="goToPage(${i})">${i}</a>
+            `;
+            pagination.appendChild(pageItem);
+        }
+    }
+
+    // Function to go to a specific page
+    function goToPage(page) {
+        currentPage = page;
+        renderTable(page);
+    }
+
+    // Initialize the table on page load
+    renderTable(currentPage);
+
+
+    const menuBtn = document.getElementById("menu-btn");
+    const sidebar = document.getElementById("sidebar");
+    const content = document.getElementById("content");
+    
+    menuBtn.addEventListener("click", function() {
+        sidebar.classList.toggle("hidden");
+        content.classList.toggle("expanded");
+    });
+</script>
+
+</body>
+</html>

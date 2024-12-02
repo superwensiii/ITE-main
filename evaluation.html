@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Evaluation</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: rgb(57,57,57);
+background: linear-gradient(90deg, rgba(57,57,57,1) 2%, rgba(32,32,32,1) 32%, rgba(0,0,0,1) 81%);
+            color: #EBEBFF;
+        }
+
+        .rating {
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: center;
+        }
+
+        .rating input {
+            display: none;
+        }
+
+        .rating label {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .rating input:checked ~ label,
+        .rating label:hover,
+        .rating label:hover ~ label {
+            color: #f39c12;
+        }
+
+        .btn-dark {
+            background: #5A2E98 ; 
+            font-weight: bold;
+        }
+
+        .card-header {
+            background: #5A2E98 ;
+            color: white; 
+            font-weight: bold;
+
+        }
+        
+       
+    </style>
+</head>
+<body>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Employee Evaluation</h2>
+
+    <!-- Table of Employees -->
+    
+    <div class="row mt-4">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header">Employee to Evaluate</div>
+            <div class="card-body bg-dark ">
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="bg-dark text-light">
+                    <th class="bg-dark text-light">Employee ID</th>
+                    <th class="bg-dark text-light">Employee Name</th>
+                    <th class="bg-dark text-light">Department</th>
+                    <th class="bg-dark text-light">Evaluate</th>
+                    
+                  </tr>
+                </thead>
+                <tbody id="transactionTable">
+                  <tr>
+                    <td class="bg-dark text-light">001</td>
+                    <td class="bg-dark text-light">Ryme Magsalsal</td>
+                    <td class="bg-dark text-light">Human Resources</td>
+                    <td class="bg-dark text-light"><button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#evaluationModal">Evaluate</button></td>
+                    
+                  </tr>
+                  <tr>
+                    <td class="bg-dark text-light">002</td>
+                    <td class="bg-dark text-light">Mikron</td>
+                    <td class="bg-dark text-light">Programmer</td>
+                    <td class="bg-dark text-light"><button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#evaluationModal">Evaluate</button></td>
+                    
+                  </tr>
+                  <tr>
+                    <td class="bg-dark text-light">003</td>
+                    <td class="bg-dark text-light">Kimberly Lee</td>
+                    <td class="bg-dark text-light">Finance</td>
+                    <td class="bg-dark text-light"><button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#evaluationModal">Evaluate</button></td>
+                    
+                  </tr>
+                  <tr>
+                    <td class="bg-dark text-light">004</td>
+                    <td class="bg-dark text-light">John Doe</td>
+                    <td class="bg-dark text-light">IT</td>
+                    <td class="bg-dark text-light"><button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#evaluationModal">Evaluate</button></td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Modal for Employee Evaluation Form -->
+    <div class="modal fade" id="evaluationModal" tabindex="-1" aria-labelledby="evaluationModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="evaluationModalLabel">Evaluate Employee: John Doe</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- Communication Skills -->
+                        <div class="mb-4">
+                            <h5>Communication Skills</h5>
+                            <p>1. How effectively does the employee communicate with team members?</p>
+                            <div class="rating">
+                                <input type="radio" name="communication1" id="communication1-5" value="5"><label for="communication1-5">★</label>
+                                <input type="radio" name="communication1" id="communication1-4" value="4"><label for="communication1-4">★</label>
+                                <input type="radio" name="communication1" id="communication1-3" value="3"><label for="communication1-3">★</label>
+                                <input type="radio" name="communication1" id="communication1-2" value="2"><label for="communication1-2">★</label>
+                                <input type="radio" name="communication1" id="communication1-1" value="1"><label for="communication1-1">★</label>
+                            </div>
+
+                            <p>2. How clear and concise is the employee's communication in writing?</p>
+                            <div class="rating">
+                                <input type="radio" name="communication2" id="communication2-5" value="5"><label for="communication2-5">★</label>
+                                <input type="radio" name="communication2" id="communication2-4" value="4"><label for="communication2-4">★</label>
+                                <input type="radio" name="communication2" id="communication2-3" value="3"><label for="communication2-3">★</label>
+                                <input type="radio" name="communication2" id="communication2-2" value="2"><label for="communication2-2">★</label>
+                                <input type="radio" name="communication2" id="communication2-1" value="1"><label for="communication2-1">★</label>
+                            </div>
+
+                            <p>3. How well does the employee listen to others?</p>
+                            <div class="rating">
+                                <input type="radio" name="communication3" id="communication3-5" value="5"><label for="communication3-5">★</label>
+                                <input type="radio" name="communication3" id="communication3-4" value="4"><label for="communication3-4">★</label>
+                                <input type="radio" name="communication3" id="communication3-3" value="3"><label for="communication3-3">★</label>
+                                <input type="radio" name="communication3" id="communication3-2" value="2"><label for="communication3-2">★</label>
+                                <input type="radio" name="communication3" id="communication3-1" value="1"><label for="communication3-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Teamwork -->
+                        <div class="mb-4">
+                            <h5>Teamwork</h5>
+                            <p>1. How well does the employee collaborate with others?</p>
+                            <div class="rating">
+                                <input type="radio" name="teamwork1" id="teamwork1-5" value="5"><label for="teamwork1-5">★</label>
+                                <input type="radio" name="teamwork1" id="teamwork1-4" value="4"><label for="teamwork1-4">★</label>
+                                <input type="radio" name="teamwork1" id="teamwork1-3" value="3"><label for="teamwork1-3">★</label>
+                                <input type="radio" name="teamwork1" id="teamwork1-2" value="2"><label for="teamwork1-2">★</label>
+                                <input type="radio" name="teamwork1" id="teamwork1-1" value="1"><label for="teamwork1-1">★</label>
+                            </div>
+
+                            <p>2. How well does the employee handle conflict within the team?</p>
+                            <div class="rating">
+                                <input type="radio" name="teamwork2" id="teamwork2-5" value="5"><label for="teamwork2-5">★</label>
+                                <input type="radio" name="teamwork2" id="teamwork2-4" value="4"><label for="teamwork2-4">★</label>
+                                <input type="radio" name="teamwork2" id="teamwork2-3" value="3"><label for="teamwork2-3">★</label>
+                                <input type="radio" name="teamwork2" id="teamwork2-2" value="2"><label for="teamwork2-2">★</label>
+                                <input type="radio" name="teamwork2" id="teamwork2-1" value="1"><label for="teamwork2-1">★</label>
+                            </div>
+
+                            <p>3. How does the employee contribute to team success?</p>
+                            <div class="rating">
+                                <input type="radio" name="teamwork3" id="teamwork3-5" value="5"><label for="teamwork3-5">★</label>
+                                <input type="radio" name="teamwork3" id="teamwork3-4" value="4"><label for="teamwork3-4">★</label>
+                                <input type="radio" name="teamwork3" id="teamwork3-3" value="3"><label for="teamwork3-3">★</label>
+                                <input type="radio" name="teamwork3" id="teamwork3-2" value="2"><label for="teamwork3-2">★</label>
+                                <input type="radio" name="teamwork3" id="teamwork3-1" value="1"><label for="teamwork3-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Punctuality -->
+                        <div class="mb-4">
+                            <h5>Punctuality</h5>
+                            <p>1. How punctual is the employee in arriving to work?</p>
+                            <div class="rating">
+                                <input type="radio" name="punctuality1" id="punctuality1-5" value="5"><label for="punctuality1-5">★</label>
+                                <input type="radio" name="punctuality1" id="punctuality1-4" value="4"><label for="punctuality1-4">★</label>
+                                <input type="radio" name="punctuality1" id="punctuality1-3" value="3"><label for="punctuality1-3">★</label>
+                                <input type="radio" name="punctuality1" id="punctuality1-2" value="2"><label for="punctuality1-2">★</label>
+                                <input type="radio" name="punctuality1" id="punctuality1-1" value="1"><label for="punctuality1-1">★</label>
+                            </div>
+
+                            <p>2. How consistently does the employee meet deadlines?</p>
+                            <div class="rating">
+                                <input type="radio" name="punctuality2" id="punctuality2-5" value="5"><label for="punctuality2-5">★</label>
+                                <input type="radio" name="punctuality2" id="punctuality2-4" value="4"><label for="punctuality2-4">★</label>
+                                <input type="radio" name="punctuality2" id="punctuality2-3" value="3"><label for="punctuality2-3">★</label>
+                                <input type="radio" name="punctuality2" id="punctuality2-2" value="2"><label for="punctuality2-2">★</label>
+                                <input type="radio" name="punctuality2" id="punctuality2-1" value="1"><label for="punctuality2-1">★</label>
+                            </div>
+
+                            <p>3. How reliable is the employee in attending meetings on time?</p>
+                            <div class="rating">
+                                <input type="radio" name="punctuality3" id="punctuality3-5" value="5"><label for="punctuality3-5">★</label>
+                                <input type="radio" name="punctuality3" id="punctuality3-4" value="4"><label for="punctuality3-4">★</label>
+                                <input type="radio" name="punctuality3" id="punctuality3-3" value="3"><label for="punctuality3-3">★</label>
+                                <input type="radio" name="punctuality3" id="punctuality3-2" value="2"><label for="punctuality3-2">★</label>
+                                <input type="radio" name="punctuality3" id="punctuality3-1" value="1"><label for="punctuality3-1">★</label>
+                            </div>
+                        </div>
+
+                        <!-- Initiative -->
+                        <div class="mb-4">
+                            <h5>Initiative</h5>
+                            <p>1. How proactive is the employee in identifying tasks that need to be done?</p>
+                            <div class="rating">
+                                <input type="radio" name="initiative1" id="initiative1-5" value="5"><label for="initiative1-5">★</label>
+                                <input type="radio" name="initiative1" id="initiative1-4" value="4"><label for="initiative1-4">★</label>
+                                <input type="radio" name="initiative1" id="initiative1-3" value="3"><label for="initiative1-3">★</label>
+                                <input type="radio" name="initiative1" id="initiative1-2" value="2"><label for="initiative1-2">★</label>
+                                <input type="radio" name="initiative1" id="initiative1-1" value="1"><label for="initiative1-1">★</label>
+                            </div>
+
+                            <p>2. How well does the employee volunteer for additional responsibilities?</p>
+                            <div class="rating">
+                                <input type="radio" name="initiative2" id="initiative2-5" value="5"><label for="initiative2-5">★</label>
+                                <input type="radio" name="initiative2" id="initiative2-4" value="4"><label for="initiative2-4">★</label>
+                                <input type="radio" name="initiative2" id="initiative2-3" value="3"><label for="initiative2-3">★</label>
+                                <input type="radio" name="initiative2" id="initiative2-2" value="2"><label for="initiative2-2">★</label>
+                                <input type="radio" name="initiative2" id="initiative2-1" value="1"><label for="initiative2-1">★</label>
+                            </div>
+
+                            <p>3. How well does the employee take initiative without being prompted?</p>
+                            <div class="rating">
+                                <input type="radio" name="initiative3" id="initiative3-5" value="5"><label for="initiative3-5">★</label>
+                                <input type="radio" name="initiative3" id="initiative3-4" value="4"><label for="initiative3-4">★</label>
+                                <input type="radio" name="initiative3" id="initiative3-3" value="3"><label for="initiative3-3">★</label>
+                                <input type="radio" name="initiative3" id="initiative3-2" value="2"><label for="initiative3-2">★</label>
+                                <input type="radio" name="initiative3" id="initiative3-1" value="1"><label for="initiative3-1">★</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-success">Submit Evaluation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="admin.html" class="btn btn-dark">Back to Dashboard</a>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Record</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            display: flex;
+        }
+        .sidebar {
+            width: 25%;
+            background-color: #f8f9fa;
+            border-right: 1px solid #ddd;
+            padding: 20px;
+        }
+        .main-content {
+            width: 75%;
+            padding: 20px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: #007bff;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .percentage {
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="main-content">
+        <div class="container mt-5">
+            <h2 class="text-center mb-4">Employee Attendance Record</h2>
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Employee ID</th>
+                            <th>Employee Name</th>
+                            <th>Time In</th>
+                            <th>Time Out</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>E001</td>
+                            <td>John Doe</td>
+                            <td>08:30 AM</td>
+                            <td>05:00 PM</td>
+                        </tr>
+                        <tr>
+                            <td>E002</td>
+                            <td>Jane Smith</td>
+                            <td>09:00 AM</td>
+                            <td>05:30 PM</td>
+                        </tr>
+                        <tr>
+                            <td>E003</td>
+                            <td>Michael Johnson</td>
+                            <td>08:45 AM</td>
+                            <td>05:15 PM</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <a href="admin.html" class="btn btn-primary">Back to Dashboard</a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

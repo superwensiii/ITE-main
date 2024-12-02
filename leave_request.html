@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Request Approval</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+
+<style>
+    body {
+        background: rgb(30,31,32);
+            color: #EBEBFF;
+    }
+    .card-header{
+        background: #5A2E98 ;
+            color: white; 
+            font-weight: bold;
+            height: 35px;
+    }
+    .btn-dark{
+        background: #5A2E98 ;
+            color: white; 
+    }
+    .sidebar {
+            height: 99vh;
+            width: 255px;
+            position: fixed;
+            top: 0;
+            left: 0%;
+            background-color: rgb(16,17,18);
+            color: white;
+            padding-top: 20px;
+            
+            transition: transform 0.3s ease-in-out;
+        }
+        .sidebar.hidden {
+            transform: translateX(-300px);
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        .sidebar a:hover {
+            background-color: #5A2E98;
+        }
+        .menu-btn {
+            font-size: 1.5rem;
+            border: none;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            margin: 10px 15px;
+        }
+        .dashboard-header {
+            margin-bottom: 20px;
+        }
+        .content {
+            margin-left: 270px;
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .content.expanded {
+            margin-left: 30px;
+        }
+</style>
+<body>
+        <!-- Sidebar -->
+        <div id="sidebar" class="sidebar">
+            <h2> Admin</h2>
+            <a href="admin.html"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a>
+            <a href="attendance.html"><i class="bi bi-calendar-check me-2"></i>Time and Attendance</a>
+            <a href="leave_request.html"><i class="bi bi-file-earmark-text me-2"></i>Leave Management</a>
+            <a href="evaluation.html"><i class="bi bi-bar-chart-line me-2"></i>Performance Management</a>
+            <a href="payroll.html"><i class="bi bi-wallet2 me-2"></i>Payroll</a>
+            <a href="login.html"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+        </div>
+    
+        <!-- Content -->
+        <div id="content" class="content">
+            <div class="navbar d-flex justify-content-between align-items-center">
+                <button id="menu-btn" class="menu-btn">☰</button>
+                <div class="d-flex align-items-center me-4">
+                    <i class="bi bi-person-circle me-2" style="font-size: 2rem; color: white;"></i>
+                    <span style="color: white; font-size: 1.5rem;">Hi, Admin</span>
+                </div>
+            </div>
+
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Employee Leave Requests</h2>
+
+    <div class="row mt-4">
+        <div class="col-lg-12">
+    
+        <div class="card bg-dark">
+        <div class="card-header">Leave Request</div>
+        <table class="table table-bordered table-striped table-hover">
+            <thead class="bg-dark table-dark border boder-light">
+                <tr>
+                    <th>Employee ID</th>
+                    <th >Employee Name</th>
+                    <th >Leave Type</th>
+                    <th >Start Date</th>
+                    <th>End Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    <td class="bg-dark text-light">E001</td>
+                    <td class="bg-dark text-light">Wensi Cornejo</td>
+                    <td class="bg-dark text-light">Sick Leave</td>
+                    <td class="bg-dark text-light">2024-11-27</td>
+                    <td class="bg-dark text-light">2024-11-29</td>
+                    <td class="bg-dark text-light"><span class="badge bg-warning">Pending</span></td>
+                    <td class="bg-dark text-light">
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Deny</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="bg-dark text-light">E002</td>
+                    <td class="bg-dark text-light">Wendel Ureta</td>
+                    <td class="bg-dark text-light">Vacation Leave</td>
+                    <td class="bg-dark text-light">2024-12-05</td>
+                    <td class="bg-dark text-light">2024-12-10</td>
+                    <td class="bg-dark text-light"><span class="badge bg-warning">Pending</span></td>
+                    <td class="bg-dark text-light">
+                        <button class="btn btn-success btn-sm">Approve</button>
+                        <button class="btn btn-danger btn-sm">Deny</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="bg-dark text-light">E003</td>
+                    <td class="bg-dark text-light">Ryme Simbajon</td>
+                    <td class="bg-dark text-light">Personal Leave</td>
+                    <td class="bg-dark text-light">2024-12-01</td>
+                    <td class="bg-dark text-light">2024-12-02</td>
+                    <td class="bg-dark text-light"><span class="badge bg-success">Approved</span></td>
+                    <td class="bg-dark text-light">
+                        <button class="btn btn-secondary btn-sm" disabled>Approved</button>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="bg-dark text-light">E004</td>
+                    <td class="bg-dark text-light">Thirdy Murillo</td>
+                    <td class="bg-dark text-light">Paternity Leave</td>
+                    <td class="bg-dark text-light">2024-12-01</td>
+                    <td class="bg-dark text-light">2024-12-08</td>
+                    <td class="bg-dark text-light"><span class="badge bg-danger">Denied</span></td>
+                    <td class="bg-dark text-light">
+                        <button class="btn btn-secondary btn-sm" disabled>Denied</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    <!-- Sidebar Toggle Script -->
+    <script>
+        const menuBtn = document.getElementById("menu-btn");
+        const sidebar = document.getElementById("sidebar");
+        const content = document.getElementById("content");
+
+        menuBtn.addEventListener("click", function() {
+            sidebar.classList.toggle("hidden");
+            content.classList.toggle("expanded");
+        });
+    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
